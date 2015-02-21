@@ -14,7 +14,7 @@
                  [environ "1.0.0"]]
   :plugins [[lein-ring "0.8.12"]]
   :ring {:handler piikr.handler/app}
-  :main piikr.core
+  :main piikr.server
   :profiles
   {:dev
     {:dependencies

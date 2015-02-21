@@ -1,4 +1,4 @@
-(ns piikr.core
+(ns piikr.server
   (:require
     [org.httpkit.server :as httpkit])
   (:use piikr.handler))
