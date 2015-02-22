@@ -4,7 +4,7 @@
     [piikr.clients.instagram :as insta]))
 
 (defn- with-insta-location [venues]
-  (map #(insta/with-location-id %) venues))
+  (filter #(contains? % :insta-location-id) (map #(insta/with-location-id %) venues)))
 
 (defn- with-recent-insta-media [venues]
   (map #(insta/with-recent-media %) venues))
