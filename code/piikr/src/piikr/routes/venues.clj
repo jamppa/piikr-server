@@ -1,16 +1,13 @@
 (ns piikr.routes.venues
-  (:use compojure.core)
+  (:use 
+    compojure.core
+    ring.util.response)
   (:require
-    [piikr.core.venues :as venues]
-    [liberator.core :as liberator]))
+    [piikr.core.venues :as venues]))
 
 (defn- find-venues [lon lat]
-  (venues/find-near lon lat))
-
-(liberator/defresource find-venues-near [lon lat]
-  :available-media-types ["application/json"]
-  :allowed-methods [:get]
-  :handle-ok (find-venues lon lat))
+  (-> (venues/find-near lon lat)
+    response))
 
 (defroutes venue-routes
-  (GET "/venues" [lon lat] (find-venues-near lon lat)))
+  (GET "/venues" [lon lat :as req] (find-venues lon lat)))

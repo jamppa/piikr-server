@@ -5,6 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/data.json "0.2.5"]
+                 [ring/ring-core "1.3.2"]
                  [compojure "1.3.1"]
                  [liberator "0.12.2"]
                  [ring-middleware-format "0.4.0"]

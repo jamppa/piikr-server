@@ -5,7 +5,8 @@
     [compojure.handler :as handler]
     [compojure.route :as route]
     [ring.middleware.format-params :refer [wrap-restful-params]]
-    [ring.middleware.format-response :refer [wrap-restful-response]]))
+    [ring.middleware.format-response :refer [wrap-restful-response]]
+    [ring.middleware.format :refer [wrap-restful-format]]))
 
 (defroutes piikr-routes
   (context "/api" [] venue-routes)
@@ -14,5 +15,4 @@
 (def app
   (->
     (handler/site piikr-routes)
-    (wrap-restful-params)
-    (wrap-restful-response)))
+    (wrap-restful-format :formats [:json-kw])))
