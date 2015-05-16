@@ -16,7 +16,7 @@
   (-> (str url client-params-template)
     (fill-template {:clientId client-id :clientSecret client-secret :version version})))
 
-(defn explore-api-endpoint [lat lon]
+(defn explore-api-endpoint [lon lat]
   (fill-template explore-endpoint-template {:lat (str lat) :lon (str lon)}))
 
 (defn items [fs-response]
@@ -31,7 +31,7 @@
         items (items body)]
     (map #(stripped-venue (:venue %)) items)))
 
-(defn explore-venues-near [lat lon]
-  (let [api-endpoint (-> (explore-api-endpoint lat lon) with-client-params)
+(defn explore-venues-near [lon lat]
+  (let [api-endpoint (-> (explore-api-endpoint lon lat) with-client-params)
         resp (http/get api-endpoint)]
     (venues @resp)))

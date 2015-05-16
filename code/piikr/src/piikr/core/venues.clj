@@ -7,7 +7,7 @@
   (filter #(contains? % :insta-location-id) (pmap #(insta/with-location-id %) venues)))
 
 (defn- with-recent-insta-media [venues]
-  (pmap #(insta/with-recent-media %) venues))
+  (filter #(not (nil? (get-in % [:media :images :standard_resolution :url]))) (pmap #(insta/with-recent-media %) venues)))
 
 (defn find-near [lon lat]
   (-> (fs/explore-venues-near lon lat)

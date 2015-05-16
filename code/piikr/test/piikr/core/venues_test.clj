@@ -8,7 +8,7 @@
     [piikr.clients.instagram :as insta]))
 
 (def fs-venue {:id "123qwe" :insta-location-id "098poi"})
-(def venue-with-recent-media (merge fs-venue {:media {}}))
+(def venue-with-recent-media (merge fs-venue {:media {:images {:standard_resolution {:url "http://foobar.com"}}}}))
 
 (testable-privates piikr.core.venues with-insta-location)
 

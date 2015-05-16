@@ -1,7 +1,8 @@
 (ns piikr.server
   (:require
     [org.httpkit.server :as httpkit])
-  (:use piikr.handler))
+  (:use piikr.handler)
+  (:gen-class))
 
 (def server (atom nil))
 
