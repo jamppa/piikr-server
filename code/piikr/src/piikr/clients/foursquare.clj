@@ -5,7 +5,7 @@
     [org.httpkit.client :as http]))
 
 (def base-api "https://api.foursquare.com")
-(def explore-endpoint-template (str base-api "/v2/venues/explore?ll={lat},{lon}&limit=25&section=nightlife&sortByDistance=1"))
+(def explore-endpoint-template (str base-api "/v2/venues/explore?ll={lat},{lon}&limit=25&section={section}&sortByDistance=1"))
 (def client-params-template "&client_id={clientId}&client_secret={clientSecret}&v={version}")
 
 (def client-id "TL4BVSAGMYCK0CBJUSSPAU2T21Y1YA3ATWCJ24QSBASPOCL2")
@@ -16,8 +16,11 @@
   (-> (str url client-params-template)
     (fill-template {:clientId client-id :clientSecret client-secret :version version})))
 
-(defn explore-api-endpoint [lon lat]
-  (fill-template explore-endpoint-template {:lat (str lat) :lon (str lon)}))
+(defn explore-api-endpoint 
+  ([lon lat]
+    (explore-api-endpoint lon lat "nightlife"))
+  ([lon lat section]
+    (fill-template explore-endpoint-template {:lat (str lat) :lon (str lon) :section section})))
 
 (defn items [fs-response]
   (if-let [groups (first (get-in fs-response [:response :groups]))]

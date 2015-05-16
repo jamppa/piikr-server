@@ -10,5 +10,8 @@
 (fact "should return venue explore api endpoint"
   (fs/explore-api-endpoint 1.234 1.234) => "https://api.foursquare.com/v2/venues/explore?ll=1.234,1.234&limit=25&section=nightlife&sortByDistance=1")
 
+(fact "should return venue explore api endpoint with section"
+  (fs/explore-api-endpoint 1.234 1.234 "food") => "https://api.foursquare.com/v2/venues/explore?ll=1.234,1.234&limit=25&section=food&sortByDistance=1")
+
 (fact "should return list of recommended venues near"
   (fs/explore-venues-near 60.192059 24.945831) => truthy)
