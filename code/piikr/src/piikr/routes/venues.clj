@@ -9,5 +9,14 @@
   (-> (venues/find-near lon lat)
     response))
 
+(defn- find-venues-by-category [lon lat cat]
+  (-> (venues/find-near-by-category lon lat cat)
+    response))
+
 (defroutes venue-routes
-  (GET "/venues" [lon lat :as req] (find-venues lon lat)))
+
+  (GET "/venues" [lon lat :as req]
+    (find-venues lon lat))
+
+  (GET "/venues/:category" [lon lat category :as req]
+    (find-venues-by-category lon lat category)))

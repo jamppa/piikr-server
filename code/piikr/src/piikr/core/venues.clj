@@ -13,3 +13,8 @@
   (-> (fs/explore-venues-near lon lat)
     with-insta-location
     with-recent-insta-media))
+
+(defn find-near-by-category [lon lat cat]
+  (-> (fs/explore-venues-near-by-category lon lat cat)
+    with-insta-location
+    with-recent-insta-media))

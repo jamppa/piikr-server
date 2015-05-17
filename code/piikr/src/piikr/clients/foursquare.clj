@@ -38,3 +38,8 @@
   (let [api-endpoint (-> (explore-api-endpoint lon lat) with-client-params)
         resp (http/get api-endpoint)]
     (venues @resp)))
+
+(defn explore-venues-near-by-category [lon lat cat]
+  (let [api-endpoint (-> (explore-api-endpoint lon lat cat) with-client-params)
+        resp (http/get api-endpoint)]
+    (venues @resp)))

@@ -15,3 +15,6 @@
 
 (fact "should return list of recommended venues near"
   (fs/explore-venues-near 60.192059 24.945831) => truthy)
+
+(fact "should return list of recommended venues near by category"
+  (fs/explore-venues-near-by-category 60.192059 24.945831 "food") => truthy)
